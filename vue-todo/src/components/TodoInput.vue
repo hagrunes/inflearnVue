@@ -5,22 +5,44 @@
     <span class="addContainer" @click="addTodo">
       <i class="fas fa-plus addBtn"></i>
     </span>
+    <Modal v-if="showModal" @close="showModal = false">
+      <!--
+    you can use custom content here to overwrite
+    default content
+  -->
+      <h3 slot="header">
+        경고
+        <i class="closeModalButton fas fa-times" @click="showModal = false"></i>
+      </h3>
+      <div slot="body">
+        글이 없다
+      </div>
+    </Modal>
   </div>
 </template>
 
 <script>
+import Modal from "./common/modal";
 export default {
+  components: {
+    Modal
+  },
   data() {
     return {
-      newTodoItem: ""
+      newTodoItem: "",
+      showModal: false
     };
   },
   methods: {
     addTodo() {
       //console.log(this.newTodoItem);
       if (this.newTodoItem !== "") {
-        this.$emit("addTodoItem", this.newTodoItem);
+        //this.$emit("addTodoItem", this.newTodoItem);
+        //const text = this.newTodoItem.trim();
+        this.$store.commit("addTodoItem", this.newTodoItem);
         this.clearInput();
+      } else {
+        this.showModal = !this.showModal;
       }
     },
     clearInput() {
@@ -54,5 +76,8 @@ input:focus {
 .addBtn {
   color: white;
   vertical-align: middle;
+}
+.closeModalButton {
+  color: #43b983;
 }
 </style>

@@ -1,0 +1,20 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2019,
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "extends": [
+    "plugin:vue/essential",
+    "eslint:recommended",
+    "plugin:prettier/recommended"   // ** 추가
+  ],
+  "plugins": [],
+  "rules": {
+    "vue/max-attributes-per-line": "off",
+    "vue/singleline-html-element-content-newline": "off"
+  }
+}
